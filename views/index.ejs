@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Application</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">My Stylish Blog</h1>
+    <div class="text-center mb-4">
+      <a href="/create" class="btn btn-primary btn-lg">Create New Post</a>
+    </div>
+    
+    <% if (posts.length > 0) { %>
+      <div class="list-group">
+        <% posts.forEach(post => { %>
+          <div class="list-group-item mb-3 post-item shadow-sm">
+            <h2 class="post-title"><%= post.title %></h2>
+            <p class="post-content"><%= post.content %></p>
+            <div class="d-flex justify-content-between">
+              <a href="/edit/<%= post.id %>" class="btn btn-warning btn-sm">Edit</a>
+              <form action="/delete/<%= post.id %>" method="POST" class="d-inline">
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+              </form>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <p class="text-center">No posts available. Create a new post!</p>
+    <% } %>
+  </div>
+</body>
+</html>
